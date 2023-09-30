@@ -30,7 +30,7 @@ TEST_CASE("RequiredShiftTest2", "[RequiredShift]")
 // Strictly speaking, you could fail this test and still get a good grade on the assignment.
 // This is provided here to contrast with the required test cases. 
 // Remember, you should make your own test cases!
-TEST_CASE("ExtraTestCase", "[P0ShiftGrading]")
+TEST_CASE("ExtraTestCase", "[AdditionalTestCase]")
 {
 	const std::string MESSAGE = "EYSJ GQ BGTGBCB GLRM RFPCC NYPRQ";
 	unsigned ENCRYPTION_KEY = 24;
