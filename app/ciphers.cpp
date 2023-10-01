@@ -1,4 +1,3 @@
-
 #include <string>
 #include "ciphers.hpp"
 
@@ -23,7 +22,7 @@ std::string decryptShift(const std::string &message, unsigned key)
 
 
 
-bool decryptSubstitution(const std::string &message, const std::string & crib, std::string &decryption)
+bool decryptSubstitution(const std::string &message, const std::string & crib, std::string &substitutionMap )
 {
     return false; // this is a stub
 }
