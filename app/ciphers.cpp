@@ -49,12 +49,11 @@ std::string decryptShift(const std::string &message, unsigned key)
     return x; // this is a stub
 }
 
-
-
 bool decryptSubstitution(const std::string &message, const std::string &crib, std::string &substitutionMap)
 {
-    if (message.size() != crib.size()) {
-        return false;  // Message and crib must be of the same length for decryption.
+    if (message.size() != crib.size())
+    {
+        return false;  // Message and crib must the same length for decryption.
     }
 
     // Initialize an empty substitution map of 26 -'s for the alphabet.
@@ -64,9 +63,22 @@ bool decryptSubstitution(const std::string &message, const std::string &crib, st
 
 std::string encryptAffine(const std::string &message, unsigned affineAlpha, unsigned affineBeta)
 {
-    return message; // this is a stub
+    std::string x;
+    for (char c : message)
+    {
+        if (std::isalpha(c))
+        {
+            char encryptedChar = 'A' + ((affineAlpha * (c - 'A') + affineBeta) % 26);
+            x += encryptedChar;
+        }
+        else
+        {
+            // Non-alphabet characters remain unchanged.
+            x += c;
+        }
+    }
+    return x;
 }
-
 
 // note: this is the ENCRYPTION key, not the decryption key.
 // You are guaranteed that affineAlpha is odd, in the range [1,25], and is not 13.  
