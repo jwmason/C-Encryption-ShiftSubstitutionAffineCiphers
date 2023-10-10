@@ -1,0 +1,4 @@
+/home/masonjw1/project0/out/CMakeFiles/a.out.app.dir
+/home/masonjw1/project0/out/CMakeFiles/a.out.tests.dir
+/home/masonjw1/project0/out/CMakeFiles/edit_cache.dir
+/home/masonjw1/project0/out/CMakeFiles/rebuild_cache.dir

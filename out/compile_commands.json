@@ -1,0 +1,42 @@
+[
+{
+  "directory": "/home/masonjw1/project0/out",
+  "command": "/usr/bin/g++  -I/home/masonjw1/project0/app -Wall -pedantic-errors -Werror -ggdb -std=c++17 -o CMakeFiles/a.out.app.dir/app/ciphers.cpp.o -c /home/masonjw1/project0/app/ciphers.cpp",
+  "file": "/home/masonjw1/project0/app/ciphers.cpp"
+},
+{
+  "directory": "/home/masonjw1/project0/out",
+  "command": "/usr/bin/g++  -I/home/masonjw1/project0/app -Wall -pedantic-errors -Werror -ggdb -std=c++17 -o CMakeFiles/a.out.app.dir/app/main.cpp.o -c /home/masonjw1/project0/app/main.cpp",
+  "file": "/home/masonjw1/project0/app/main.cpp"
+},
+{
+  "directory": "/home/masonjw1/project0/out",
+  "command": "/usr/bin/g++  -I/home/masonjw1/project0/app -I/home/masonjw1/project0/tests -Wall -pedantic-errors -Werror -ggdb -std=c++17 -o CMakeFiles/a.out.tests.dir/tests/AffineTests.cpp.o -c /home/masonjw1/project0/tests/AffineTests.cpp",
+  "file": "/home/masonjw1/project0/tests/AffineTests.cpp"
+},
+{
+  "directory": "/home/masonjw1/project0/out",
+  "command": "/usr/bin/g++  -I/home/masonjw1/project0/app -I/home/masonjw1/project0/tests -Wall -pedantic-errors -Werror -ggdb -std=c++17 -o CMakeFiles/a.out.tests.dir/tests/ShiftTests.cpp.o -c /home/masonjw1/project0/tests/ShiftTests.cpp",
+  "file": "/home/masonjw1/project0/tests/ShiftTests.cpp"
+},
+{
+  "directory": "/home/masonjw1/project0/out",
+  "command": "/usr/bin/g++  -I/home/masonjw1/project0/app -I/home/masonjw1/project0/tests -Wall -pedantic-errors -Werror -ggdb -std=c++17 -o CMakeFiles/a.out.tests.dir/tests/SubstituteTests.cpp.o -c /home/masonjw1/project0/tests/SubstituteTests.cpp",
+  "file": "/home/masonjw1/project0/tests/SubstituteTests.cpp"
+},
+{
+  "directory": "/home/masonjw1/project0/out",
+  "command": "/usr/bin/g++  -I/home/masonjw1/project0/app -I/home/masonjw1/project0/tests -Wall -pedantic-errors -Werror -ggdb -std=c++17 -o CMakeFiles/a.out.tests.dir/tests/catch_amalgamated.cpp.o -c /home/masonjw1/project0/tests/catch_amalgamated.cpp",
+  "file": "/home/masonjw1/project0/tests/catch_amalgamated.cpp"
+},
+{
+  "directory": "/home/masonjw1/project0/out",
+  "command": "/usr/bin/g++  -I/home/masonjw1/project0/app -I/home/masonjw1/project0/tests -Wall -pedantic-errors -Werror -ggdb -std=c++17 -o CMakeFiles/a.out.tests.dir/tests/main.cpp.o -c /home/masonjw1/project0/tests/main.cpp",
+  "file": "/home/masonjw1/project0/tests/main.cpp"
+},
+{
+  "directory": "/home/masonjw1/project0/out",
+  "command": "/usr/bin/g++  -I/home/masonjw1/project0/app -I/home/masonjw1/project0/tests -Wall -pedantic-errors -Werror -ggdb -std=c++17 -o CMakeFiles/a.out.tests.dir/app/ciphers.cpp.o -c /home/masonjw1/project0/app/ciphers.cpp",
+  "file": "/home/masonjw1/project0/app/ciphers.cpp"
+}
+]
