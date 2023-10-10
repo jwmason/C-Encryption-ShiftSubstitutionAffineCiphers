@@ -51,9 +51,15 @@ std::string decryptShift(const std::string &message, unsigned key)
 
 
 
-bool decryptSubstitution(const std::string &message, const std::string & crib, std::string &substitutionMap )
+bool decryptSubstitution(const std::string &message, const std::string &crib, std::string &substitutionMap)
 {
-    return false; // this is a stub
+    if (message.size() != crib.size()) {
+        return false;  // Message and crib must be of the same length for decryption.
+    }
+
+    // Initialize an empty substitution map of 26 -'s for the alphabet.
+    substitutionMap = "--------------------------";
+    return false;
 }
 
 std::string encryptAffine(const std::string &message, unsigned affineAlpha, unsigned affineBeta)
