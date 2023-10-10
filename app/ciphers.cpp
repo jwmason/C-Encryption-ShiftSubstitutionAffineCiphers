@@ -14,10 +14,17 @@ std::string encryptShift(const std::string &message, unsigned key)
     std::string x{""}; // string x to hold decrypted message
     for (char c : message) // loop through all characters in encrypted message
     {
-        char base{'A'}; // single quotes to show it is a character literal rather than a string literal
-        char decryptedChar = static_cast<char>((26 + (c - base + key)) % 26 + base); // (c - base) to find character. + key to find orig position. 
-                                                                                     // 26 + and % 26 to handle loop arounds. + base to offset the orig - base.
-        x += decryptedChar; // Add decrypted character to x
+        if (std::isalpha(c)) // check if the character is a letter
+        {
+            char base{'A'}; // single quotes to show it is a character literal rather than a string literal
+            char decryptedChar = static_cast<char>((26 + (c - base + key)) % 26 + base); // (c - base) to find character. + key to find orig position. 
+                                                                                         // 26 + and % 26 to handle loop arounds. + base to offset the orig - base.
+            x += decryptedChar; // Add decrypted character to x
+        }
+        else // check for whitespace
+        {
+            x += ' ';
+        }
     }
     return x; // this is a stub
 }
