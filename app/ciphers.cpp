@@ -63,17 +63,21 @@ bool decryptSubstitution(const std::string &message, const std::string &crib, st
 
 std::string encryptAffine(const std::string &message, unsigned affineAlpha, unsigned affineBeta)
 {
+    // initialize encrypted message
     std::string x;
+    // loop through each character
     for (char c : message)
     {
+        // check to see if character or whitespace
         if (std::isalpha(c))
         {
+            // ⍺x + β, modulo 26
             char encryptedChar = 'A' + ((affineAlpha * (c - 'A') + affineBeta) % 26);
             x += encryptedChar;
         }
         else
         {
-            // Non-alphabet characters remain unchanged.
+            // whitespace
             x += c;
         }
     }
@@ -84,6 +88,36 @@ std::string encryptAffine(const std::string &message, unsigned affineAlpha, unsi
 // You are guaranteed that affineAlpha is odd, in the range [1,25], and is not 13.  
 std::string decryptAffine(const std::string &message, unsigned affineAlpha, unsigned affineBeta)
 {
-    return message; // this is a stub
-    
+    // formula for decryption:  x ≡ (inverseAlpha * ((c - 'A') - affineBeta)) % 26
+    // initialize decrypted message
+    std::string x;
+    // Calculate the inverse of affineAlpha
+    unsigned inverseAlpha = 1;
+    for (int i{1}; i < 26; i++) {
+        // checks for the multiplicative inverse of affineAlpha
+        if ((affineAlpha * i) % 26 == 1) {
+            inverseAlpha = i;
+            break;
+        }
+    }
+    // Iterate through each character in the encrypted message
+    for (char c : message)
+    {
+        // check if it's a letter or whitespace
+        if (isalpha(c))
+        {
+            // x ≡ (inverseAlpha * ((c - 'A') - affineBeta)) % 26
+            int b = (inverseAlpha * ((c - 'A') - affineBeta + 26)) % 26;
+            // Convert back to a character
+            char decryptedChar = static_cast<char>('A' + b);
+             // Append to decrypted string variable
+            x += decryptedChar;
+        }
+        else
+        {
+            // whitespace
+            x += c;
+        }
+    }
+    return x;
 }
