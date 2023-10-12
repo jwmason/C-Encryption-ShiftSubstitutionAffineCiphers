@@ -2,52 +2,54 @@
 #include <iostream>
 #include "ciphers.hpp"
 
-
-/* 
- * Right now, these functions are stubbed;  that will allow this project
-   to compile before you finish everything, and allow you to incrementally
-   test your code, but are not expected to return the correct answers.
- */
-
-
 std::string encryptShift(const std::string &message, unsigned key)
 {
-    std::string x{""}; // string x to hold decrypted message
-    for (char c : message) // loop through all characters in encrypted message
+    // initialize string to hold decrypted message
+    std::string encryptedMessage{""};
+    // loop through all characters in encrypted message
+    for (char c : message)
     {
-        if (std::isalpha(c)) // check if the character is a letter
+        // check if the character is a letter
+        if (std::isalpha(c))
         {
-            char base{'A'}; // single quotes to show it is a character literal rather than a string literal
-            char decryptedChar = static_cast<char>((26 + (c - base + key)) % 26 + base); // (c - base) to find character. + key to find orig position. 
-                                                                                         // 26 + and % 26 to handle loop arounds. + base to offset the orig - base.
-            x += decryptedChar; // Add decrypted character to x
+            // single quotes to show it is a character literal rather than a string literal
+            char base{'A'};
+            // (c - base) to find character. + key to find orig position. 
+            // 26 + and % 26 to handle loop arounds. + base to offset the orig - base.
+            char decryptedChar = static_cast<char>((26 + (c - base + key)) % 26 + base); 
+            encryptedMessage += decryptedChar; // Add decrypted character to x
         }
         else // check for whitespace
         {
-            x += ' ';
+            encryptedMessage += ' ';
         }
     }
-    return x; // this is a stub
+    return encryptedMessage; // return the encrypted string
 }
 
 std::string decryptShift(const std::string &message, unsigned key)
 {
-    std::string x{""}; // string x to hold decrypted message
-    for (char c : message) // loop through all characters in encrypted message
+    // initialize string to hold decrypted message
+    std::string decryptedMessage{""};
+    // loop through all characters in encrypted message
+    for (char c : message)
     {
-        if (std::isalpha(c)) // check if the character is a letter
+        // check if the character is a letter
+        if (std::isalpha(c))
         {
-            char base{'A'}; // single quotes to show it is a character literal rather than a string literal
-            char decryptedChar = static_cast<char>((26 + (c - base - key)) % 26 + base); // (c - base) to find character. - key to find orig position. 
-                                                                                         // 26 + and % 26 to handle loop arounds. + base to offset the orig - base.
-            x += decryptedChar; // Add decrypted character to x
+            // single quotes to show it is a character literal rather than a string literal
+            char base{'A'};
+            // (c - base) to find character. - key to find orig position. 
+            // 26 + and % 26 to handle loop arounds. + base to offset the orig - base.
+            char decryptedChar = static_cast<char>((26 + (c - base - key)) % 26 + base); 
+            decryptedMessage += decryptedChar; // Add decrypted character to x
         }
         else // check for whitespace
         {
-            x += ' ';
+            decryptedMessage += ' ';
         }
     }
-    return x; // this is a stub
+    return decryptedMessage; // return decrypted message
 }
 
 bool decryptSubstitution(const std::string &message, const std::string &crib, std::string &substitutionMap)
@@ -73,8 +75,8 @@ bool decryptSubstitution(const std::string &message, const std::string &crib, st
                     {
                         bool alrexist{false};
                         // If empty, check it is not a duplicate
-                        for (unsigned z = 0; z < substitutionMap.length(); z++) {
-                            if (substitutionMap[z] == message_substring[j])
+                        for (unsigned k = 0; k < substitutionMap.length(); k++) {
+                            if (substitutionMap[k] == message_substring[j])
                             {
                                 alrexist = true;
                                 break;
@@ -99,7 +101,6 @@ bool decryptSubstitution(const std::string &message, const std::string &crib, st
                     // Reset map if not the same shape
                     else
                     {
-                        // std::cout << substitutionMap << '\n';
                         substitutionMap = "--------------------------";
                         break;
                     }
@@ -123,13 +124,14 @@ bool decryptSubstitution(const std::string &message, const std::string &crib, st
             }
         }
     }
+    // return false if not true
     return false;
 }
 
 std::string encryptAffine(const std::string &message, unsigned affineAlpha, unsigned affineBeta)
 {
     // initialize encrypted message
-    std::string x;
+    std::string encryptedMessage;
     // loop through each character
     for (char c : message)
     {
@@ -138,24 +140,22 @@ std::string encryptAffine(const std::string &message, unsigned affineAlpha, unsi
         {
             // ⍺x + β, modulo 26
             char encryptedChar = 'A' + ((affineAlpha * (c - 'A') + affineBeta) % 26);
-            x += encryptedChar;
+            encryptedMessage += encryptedChar;
         }
         else
         {
-            // whitespace
-            x += c;
+            // allocate for whitespace
+            encryptedMessage += c;
         }
     }
-    return x;
+    return encryptedMessage;
 }
 
-// note: this is the ENCRYPTION key, not the decryption key.
-// You are guaranteed that affineAlpha is odd, in the range [1,25], and is not 13.  
 std::string decryptAffine(const std::string &message, unsigned affineAlpha, unsigned affineBeta)
 {
     // formula for decryption:  x ≡ (inverseAlpha * ((c - 'A') - affineBeta)) % 26
     // initialize decrypted message
-    std::string x;
+    std::string decryptedMessage;
     // Calculate the inverse of affineAlpha
     unsigned inverseAlpha = 1;
     for (int i{1}; i < 26; i++) {
@@ -172,17 +172,18 @@ std::string decryptAffine(const std::string &message, unsigned affineAlpha, unsi
         if (isalpha(c))
         {
             // x ≡ (inverseAlpha * ((c - 'A') - affineBeta)) % 26
-            int b = (inverseAlpha * ((c - 'A') - affineBeta + 26)) % 26;
+            int EncryptedChar = (inverseAlpha * ((c - 'A') - affineBeta + 26)) % 26;
             // Convert back to a character
-            char decryptedChar = static_cast<char>('A' + b);
+            char decryptedChar = static_cast<char>('A' + EncryptedChar);
              // Append to decrypted string variable
-            x += decryptedChar;
+            decryptedMessage += decryptedChar;
         }
         else
         {
-            // whitespace
-            x += c;
+            // allocate for whitespace
+            decryptedMessage += c;
         }
     }
-    return x;
+    // Return the decrypted message
+    return decryptedMessage;
 }
