@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 #include "ciphers.hpp"
 
 
@@ -51,13 +52,77 @@ std::string decryptShift(const std::string &message, unsigned key)
 
 bool decryptSubstitution(const std::string &message, const std::string &crib, std::string &substitutionMap)
 {
-    if (message.size() != crib.size())
-    {
-        return false;  // Message and crib must the same length for decryption.
-    }
-
-    // Initialize an empty substitution map of 26 -'s for the alphabet.
+    // Initialize the substitution map with 26 '-' characters
     substitutionMap = "--------------------------";
+    // See if the crib is compatible -> index the message and match the crib length to each possible substring of message
+    for (unsigned i = 0; i < (message.length() - crib.length() + 1); i++)
+    {
+        // initialize looping substring
+        std::string message_substring = message.substr(i, crib.length() + i);
+        // Make sure first and last letter of substring are not whitespace
+        if ((message_substring[0] != ' ') && (message_substring[message_substring.length() - 1] != ' '))
+        {
+            // Loop through each character in message substring to match shape with crib
+            for (unsigned j = 0; j < crib.length(); j++)
+            {
+                // Check if both are characters
+                if (std::isalpha(message_substring[j]) && std::isalpha(crib[j]))
+                {
+                    // Check if it is empty
+                    if (substitutionMap[crib[j] - 'A'] == '-')
+                    {
+                        bool alrexist{false};
+                        // If empty, check it is not a duplicate
+                        for (unsigned z = 0; z < substitutionMap.length(); z++) {
+                            if (substitutionMap[z] == message_substring[j])
+                            {
+                                alrexist = true;
+                                break;
+                            }
+                        }
+                        // If it is a duplicate, reset
+                        if (alrexist) {
+                            substitutionMap = "--------------------------";
+                            break;
+                        }
+                        // Else update the substitutionMap
+                        else
+                        {   
+                            substitutionMap[crib[j] - 'A'] = message_substring[j];
+                        }
+                    }
+                    // If the substitution has a duplicate that is the same key and same message char, continue
+                    else if (substitutionMap[crib[j] - 'A'] == message_substring[j]) 
+                    {
+                        continue;
+                    }
+                    // Reset map if not the same shape
+                    else
+                    {
+                        // std::cout << substitutionMap << '\n';
+                        substitutionMap = "--------------------------";
+                        break;
+                    }
+                }
+                // Check if both are whitespace
+                else if (message_substring[j] == ' ' && crib[j] == ' ')
+                {
+                    continue;
+                }
+                // If neither, exit and check next substring
+                else
+                {
+                    substitutionMap = "--------------------------";
+                    break;
+                }
+            }
+            // If the map is not empty, return true
+            if (substitutionMap != "--------------------------")
+            {
+                return true;
+            }
+        }
+    }
     return false;
 }
 
